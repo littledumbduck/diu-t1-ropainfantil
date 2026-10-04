@@ -39,11 +39,22 @@ El público objetivo se divide en dos segmentos primarios:
 
 ### 2.3 Análisis de la competencia           (tabla con mín. 3 apps)
 
-
+| Competidor | Qué hacen bien | Qué hacen mal | Qué nos llevamos para el proyecto |
+| :--- | :--- | :--- | :--- |
+| **Zara Kids** | Fotografía editorial inmersiva y navegación por categorías visualmente limpia. | Selector de tallas confuso; la información de medidas reales queda oculta tras varios clics y el botón de añadir al carrito es poco visible con una mano. | Mantener tarjetas de producto limpias pero con llamada a la acción (CTA) y selectores de talla destacados a primer nivel. |
+| **H&M Niños** | Filtrado ágil por edad y tipo de prenda mediante *filter chips* bien jerarquizados. | El proceso de checkout está sobrecargado de opciones de fidelización y pasos intermedios que ralentizan el cierre de la compra. | Adoptar el uso de chips de filtro directos accesibles en la parte superior del catálogo y recortar el checkout a una pantalla ágil. |
+| **Mayoral** | Filtrado ágil por edad y tipo de prenda mediante *filter chips* bien jerarquizados. | El proceso de checkout está sobrecargado de opciones de fidelización y pasos intermedios que ralentizan el cierre de la compra. | Adoptar el uso de chips de filtro directos accesibles en la parte superior del catálogo y recortar el checkout a una pantalla ágil. |
 
 ### 2.4 Insights y hallazgos clave           (mín. 4, cada uno con su decisión de diseño)
 
-
+1. **Duda crítica con las equivalencias de tallas:** Los usuarios compradores de regalos no recuerdan medidas en centímetros y temen equivocarse.  
+   * **Decisión de diseño:** Implementar un botón directo «Guía de tallas» junto al selector del producto que despliega un *bottom sheet* con equivalencias rápidas (edad, altura y peso) sin sacarlo del flujo de compra.
+2. **Uso preferente a una sola mano en movimiento:** La mayoría de compras se efectúan sosteniendo el terminal con una mano mientras se atiende otra actividad.  
+   * **Decisión de diseño:** Disponer los botones principales de acción (*sticky CTA* para añadir al carrito y tramitar compra) en el tercio inferior de la pantalla, garantizando un área de contacto mínima de 48×48 dp.
+3. **Miedo a la eliminación accidental de artículos:** Al operar con rapidez, tocar iconos de borrado por error genera fricción si no hay vuelta atrás sencilla.  
+   * **Decisión de diseño:** Al eliminar un ítem del carrito, el sistema muestra un *snackbar* emergente con la acción «Deshacer» activa durante unos segundos.
+4. **Fatiga ante errores en formularios de pago:** Los campos que no alertan en tiempo real provocan que el usuario abandone antes de revisar todo el formulario.  
+   * **Decisión de diseño:** Utilizar campos de texto (*text fields*) M3 con validación reactiva y mensajes de ayuda/error explícitos debajo de cada campo comprometido.
 
 ---
 
