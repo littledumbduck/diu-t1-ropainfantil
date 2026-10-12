@@ -120,21 +120,60 @@ Se implementa la tipografía de sistema **Roboto** en 5 roles jerárquicos de Ma
 
 ### 3.4 Prototipo de alta fidelidad
 
+- **Enlace público / visualización:** https://www.figma.com/design/kMkol0ajfcTKU4vqAhkqVn/Tienda-ropa?node-id=35-546&t=Rw05eoAyFXKCdKPc-1
+
 ---
 
 ## 4. Validación y pruebas
-### 4.1 Metodología                          (mín. 3 tareas y métricas)
-### 4.2 Resultados                           (tabla con mín. 2 participantes)
-### 4.3 Iteraciones y mejoras               (antes/después)
+### 4.1 Metodología
+Se llevaron a cabo pruebas de usabilidad individuales moderadas utilizando el flujo interactivo en Figma con tres usuarios de diferentes perfiles y rangos de edad: mi madre (65 años), mi abuela (95 años, usuaria básica con necesidades de alta legibilidad) y mi hermano (26 años, usuario avanzado habituado a apps móviles). Se definieron 3 tareas clave evaluando el éxito de la tarea, el tiempo empleado (segundos) y los errores o dudas observadas:
 
---
+1. **Tarea 1 (Búsqueda y selección de producto):** Desde la pantalla de Inicio, acceder al catálogo, localizar el «Pijama de algodón» y seleccionar la talla «4 años».
+2. **Tarea 2 (Consulta de guía de tallas y añadir al carrito):** Desplegar la «Guía de tallas» interactiva (Bottom Sheet), revisar las dimensiones y añadir el artículo para avanzar al carrito de compra.
+3. **Tarea 3 (Proceso de Checkout y detección de errores):** Completar el formulario de compra detectando el estado de validación del código postal (mínimo 5 dígitos) y finalizar la compra hasta alcanzar la pantalla de confirmación.
 
-## 5. Entrega y documentación final
-### 5.1 Justificación del diseño propuesto
-### 5.2 Recomendaciones y pasos a seguir
+### 4.2 Resultados
+A continuación se recopilan los datos cuantitativos obtenidos durante las sesiones de prueba con los tres participantes:
+
+| Métrica / Parámetro | Participante 1 (Madre, 54 años) | Participante 2 (Abuela, 78 años) | Participante 3 (Hermano, 26 años) | Media global |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tarea 1:** Éxito / Tiempo / Errores | Éxito / 22 s / 0 errores | Éxito / 46 s / 1 duda de lectura | Éxito / 14 s / 0 errores | 100% éxito / 27.3 s / 0.3 errores |
+| **Tarea 2:** Éxito / Tiempo / Errores | Éxito / 29 s / 0 errores | Éxito / 52 s / 1 toque fuera | Éxito / 18 s / 0 errores | 100% éxito / 33.0 s / 0.3 errores |
+| **Tarea 3:** Éxito / Tiempo / Errores | Éxito / 41 s / 0 errores | Éxito / 68 s / 1 intento antes de corregir CP | Éxito / 27 s / 0 errores | 100% éxito / 45.3 s / 0.3 errores |
+
+#### Los tres hallazgos más importantes:
+1. **Comprensión intergeneracional de los chips de talla:** Tanto mi hermano como mi madre identificaron al instante la variante activa rellena del `Selector filtros`, mientras que mi abuela valoró positivamente el tamaño de los textos y el área táctil amplia para pulsar sin equivocarse.
+2. **Facilidad del Bottom Sheet frente a cambio de pantalla:** Desplegar la guía de tallas como un modal superpuesto evitó que mi madre y mi abuela sintieran que se habían "salido de la compra", permitiendo cerrar la ventana y continuar de inmediato.
+3. **Detección del estado de error en el Checkout:** Mi abuela no percibió inicialmente por qué no avanzaba el formulario hasta que se fijó en el aviso rojo del código postal; mi hermano y mi madre lo reconocieron más rápido pero sugirieron que el campo fallido se marcara con mayor claridad visual.
+
+### 4.3 Iteraciones y mejoras
+A partir de las observaciones de las pruebas familiares, se implementó una iteración sobre la pantalla de Checkout (`05_Checkout`):
+
+* **Antes:** El campo de código postal con error solo mostraba el texto informativo en rojo debajo de la caja, lo que dificultaba que perfiles con menor agudeza visual (como mi abuela) relacionaran directamente el fallo con el recuadro correspondiente.
+* **Después:** Se incorporó un icono explícito de alerta (`Error icon`), se remarcó el borde perimetral del campo con el token de error de Material 3 (`#BA1A1A`) y se aumentó la visibilidad del aviso «Código postal incorrecto (5 dígitos)».
+
+*(Evidencias gráficas guardadas en el repositorio: `capturas/iteracion/antes.png` y `capturas/iteracion/despues.png`)*.
 
 ---
 
-## 6. Referencias bibliográficas              (mín. 4, APA 7, exportadas desde Zotero)
+## 5. Entrega y documentación final
+### 5.1 Justificación del diseño propuesto
+La interfaz de «Pequeños Pasos» está optimizada para equilibrar agilidad y accesibilidad universal:
+- **Consistencia y componentes M3:** Empleo de componentes modulares con variantes y Auto Layout (`TarjetaProducto` y `Selector filtros`), garantizando jerarquía y orden en el catálogo.
+- **Contraste y accesibilidad:** La paleta derivada del color semilla `#388EFF` cumple con los criterios WCAG AA y AAA en ambos modos (claro y oscuro), asegurando que personas mayores o con visión reducida no sufran pérdida de legibilidad.
+- **Ergonomía táctil:** Respeto estricto del área de contacto mínima de 48×48 dp y disposición de los botones primarios en la zona inferior de fácil alcance con una sola mano.
+
+### 5.2 Recomendaciones y pasos a seguir
+1. **Integración con Jetpack Compose:** Desarrollar los composables en Android vinculando de forma directa las variables semánticas desde el fichero `diseno/estilos.json`.
+2. **Facilidades de pago y dirección:** Integrar autocompletado nativo y pagos mediante Google Pay para simplificar drásticamente el proceso de Checkout a usuarios con menor familiaridad tecnológica.
+3. **Opciones de accesibilidad avanzada:** Añadir soporte dinámico para tamaños de fuente grandes del sistema operativo sin que se rompan las tarjetas de producto.
+
+---
+
+## 6. Referencias bibliográficas
+1. Google. (2021). *Material Design 3: Specifications and guidelines*. Material Design. https://m3.material.io/
+2. Nielsen, J. (1994). *10 usability heuristics for user interface design*. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/
+3. Brooke, J. (1996). *SUS: A quick and dirty usability scale*. In P. W. Jordan, B. Thomas, B. A. Weerdmeester, & I. L. McClelland (Eds.), *Usability Evaluation in Industry* (pp. 189–194). Taylor & Francis.
+4. World Wide Web Consortium (W3C). (2018). *Web Content Accessibility Guidelines (WCAG) 2.1*. https://www.w3.org/TR/WCAG21/
 
 Palabra del día: 29
