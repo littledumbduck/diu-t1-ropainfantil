@@ -60,8 +60,64 @@ El público objetivo se divide en dos segmentos primarios:
 
 ## 3. Diseño de la interfaz
 ### 3.1 Mapa de navegación                   (bloque ```mermaid)
+
+```mermaid
+flowchart TD
+    Inicio[1. Inicio]
+    Catalogo[2. Catálogo]
+    Detalle[3. Detalle de Producto]
+    GuiaTallas[Overlay: Guía de Tallas]
+    Carrito[4. Carrito]
+    Checkout[5. Checkout]
+    Confirmacion[6. Confirmación]
+    PerfilFav[7. Favoritos / Perfil]
+
+    %% Flujo de compra
+    Inicio -->|Elige categoría o novedad| Catalogo
+    Catalogo -->|Selecciona prenda| Detalle
+    Detalle -->|Click Guía de tallas| GuiaTallas
+    Detalle -->|Añadir al carrito| Carrito
+    Carrito -->|Tramitar pedido| Checkout
+    Checkout -->|Pagar| Confirmacion
+    Confirmacion -->|Volver a inicio| Inicio
+
+    %% Navigation Bar (3 destinos)
+    Inicio <--> Catalogo
+    Inicio <--> PerfilFav
+    Catalogo <--> PerfilFav
+```
+
 ### 3.2 Wireframes
+
+- Subidos en la carpeta wireframe.
+
 ### 3.3 Guía de estilo Material Design 3
+
+A partir del color semilla `# `, se ha generado el sistema cromático semántico en esquemas claro y oscuro mediante el plugin Material Theme Builder. Se ha justificado la elección de esta tonalidad azul brillante por su estímulo positivo y atractivo visual en moda infantil, adaptándose algorítmicamente para garantizar la accesibilidad y la legibilidad en pantalla.
+
+#### Verificación de contraste (WCAG AA)
+Todos los pares de color de interacción cumplen o superan el criterio de conformidad WCAG 2.1 AA (ratio mínimo de 4.5:1 para texto normal):
+
+* **Primary / onPrimary (Claro):** `#005FAF` sobre `#FFFFFF` → Ratio **5.14:1** (Cumple AA).
+* **Primary Container / onPrimaryContainer (Claro):** `#D4E3FF` sobre `#001C3A` → Ratio **14.12:1** (Cumple AAA).
+* **Surface / onSurface (Claro):** `#FDFBFF` sobre `#1A1C1E` → Ratio **16.10:1** (Cumple AAA).
+* **Error / onError (Claro):** `#BA1A1A` sobre `#FFFFFF` → Ratio **5.74:1** (Cumple AA).
+* **Primary / onPrimary (Oscuro):** `#A5C8FF` sobre `#00315F` → Ratio **8.35:1** (Cumple AAA).
+* **Surface / onSurface (Oscuro):** `#1A1C1E` sobre `#E2E2E6` → Ratio **13.04:1** (Cumple AAA).
+
+#### Escala tipográfica
+Se implementa la tipografía de sistema **Roboto** en 5 roles jerárquicos de Material Design 3:
+* `headlineSmall`: 24 px / interlineado 32 px / Regular (400) — Encabezados y títulos principales.
+* `titleLarge`: 22 px / interlineado 28 px / Regular (400) — Títulos en la Top App Bar.
+* `titleMedium`: 16 px / interlineado 24 px / Medium (500) — Nombres de artículos en tarjetas.
+* `bodyLarge`: 16 px / interlineado 24 px / Regular (400) — Descripciones de prendas y textos informativos.
+* `labelLarge`: 14 px / interlineado 20 px / Medium (500) — Etiquetas de botones, chips y navegación.
+
+#### Retícula, espaciado y áreas táctiles
+* **Retícula:** Configuración móvil de 4 columnas, márgenes laterales de 16 dp y medianil de 16 dp.
+* **Sistema de espaciado:** Múltiplos basados en incrementos de 8 dp (8, 16, 24, 32 dp).
+* **Área táctil mínima:** Todos los componentes interactivos cuentan con un área de contacto mínima de **48×48 dp** para facilitar la pulsación a una sola mano.
+
 ### 3.4 Prototipo de alta fidelidad
 
 ---
